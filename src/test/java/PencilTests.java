@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import main.java.Paper;
 import main.java.Pencil;
 
 class PencilTests {

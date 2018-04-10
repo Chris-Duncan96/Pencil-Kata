@@ -28,7 +28,7 @@ class PencilTests {
 	}
 	
 	@Test
-	void paperCanBeInjectedIntoPencilAsArgumentTest() {
+	void paperCanBeInjectedIntoPencilAsLoneArgumentTest() {
 		try {
 			Paper paper = new Paper();
 			Pencil pencil = new Pencil(paper);

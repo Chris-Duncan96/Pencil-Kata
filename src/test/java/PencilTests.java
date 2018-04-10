@@ -16,5 +16,14 @@ class PencilTests {
 			fail(e.getMessage());
 		}
 	}
+	
+	@Test
+	void paperCanBeInitializedWithNoArgumentsTest() {
+		try {
+			new Paper();
+		} catch(Exception e) {
+			fail(e.getMessage());
+		}
+	}
 
 }

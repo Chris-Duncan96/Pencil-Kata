@@ -26,5 +26,15 @@ class PencilTests {
 			fail(e.getMessage());
 		}
 	}
+	
+	@Test
+	void paperCanBeInjectedIntoPencilAsArgumentTest() {
+		try {
+			Paper paper = new Paper();
+			Pencil pencil = new Pencil(paper);
+		} catch(Exception e) {
+			fail(e.getMessage());
+		}
+	}
 
 }

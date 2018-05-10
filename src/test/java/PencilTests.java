@@ -8,15 +8,6 @@ import main.java.Paper;
 import main.java.Pencil;
 
 class PencilTests {
-
-	@Test
-	void pencilCanBeInitializedWithOneArgumentTest() {
-		try {
-			new Pencil(1);
-		} catch(Exception e) {
-			fail(e.getMessage());
-		}
-	}
 	
 	@Test
 	void paperCanBeInitializedWithNoArgumentsTest() {

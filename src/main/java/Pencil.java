@@ -2,7 +2,7 @@ package main.java;
 
 public class Pencil {
 
-	public Pencil (int arg) {
+	public Pencil (Paper paper) {
 		
 	}
 }

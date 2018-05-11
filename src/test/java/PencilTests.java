@@ -27,5 +27,14 @@ class PencilTests {
 			fail(e.getMessage());
 		}
 	}
+	
+	@Test
+	void whenGivenCharacterPencilWritesItToPaperAsString() {
+		Paper paper = new Paper();
+		Pencil pencil = new Pencil(paper);
+		pencil.write('a');
+		assertEquals("a", paper.content);
+	}
+
 
 }

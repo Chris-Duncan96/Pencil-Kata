@@ -38,4 +38,11 @@ class PencilTests {
 		pencil.write("a");
 		assertEquals(" ", paper.content);
 	}
+	
+	@Test
+	void whenGivenStringTwoCharactersLongAnd0PointDurabilityPencilWritesTwoBlankSpacesTest() {
+		pencil.tipDurability = 0;
+		pencil.write("ab");
+		assertEquals("  ", paper.content);
+	}
 }

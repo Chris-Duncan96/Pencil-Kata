@@ -2,6 +2,7 @@ package test.java;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import main.java.Paper;
@@ -9,41 +10,25 @@ import main.java.Pencil;
 
 class PencilTests {
 	
-	@Test
-	void paperCanBeInitializedWithNoArgumentsTest() {
-		try {
-			new Paper();
-		} catch(Exception e) {
-			fail(e.getMessage());
-		}
-	}
+	Paper paper;
+	Pencil pencil;
 	
-	@Test
-	void paperCanBeInjectedIntoPencilAsLoneArgumentTest() {
-		try {
-			Paper paper = new Paper();
-			Pencil pencil = new Pencil(paper);
-		} catch(Exception e) {
-			fail(e.getMessage());
-		}
+	@BeforeEach
+	void InitializePaperAndPencil() {
+		paper = new Paper();
+		pencil = new Pencil(paper);
 	}
 	
 	@Test
 	void whenGivenStringPencilWritesItToPaperTest() {
-		Paper paper = new Paper();
-		Pencil pencil = new Pencil(paper);
 		pencil.write("a");
 		assertEquals("a", paper.content);
 	}
 	
 	@Test
 	void whenGivenStringPencilAppendsItToPaperTest() {
-		Paper paper = new Paper();
-		Pencil pencil = new Pencil(paper);
 		paper.content = "b";
 		pencil.write("a");
 		assertEquals("ba", paper.content);
 	}
-
-
 }

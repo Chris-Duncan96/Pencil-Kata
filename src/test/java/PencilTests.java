@@ -29,10 +29,10 @@ class PencilTests {
 	}
 	
 	@Test
-	void whenGivenCharacterPencilWritesItToPaperAsString() {
+	void whenGivenStringPencilWritesItToPaperTest() {
 		Paper paper = new Paper();
 		Pencil pencil = new Pencil(paper);
-		pencil.write('a');
+		pencil.write("a");
 		assertEquals("a", paper.content);
 	}
 

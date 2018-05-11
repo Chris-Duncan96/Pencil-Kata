@@ -2,7 +2,8 @@ package main.java;
 
 public class Pencil {
 
-	public Pencil (Paper paper) {
-		
+	Paper paper;
+	public Pencil (Paper argPaper) {
+		this.paper = argPaper;
 	}
 }

@@ -31,4 +31,11 @@ class PencilTests {
 		pencil.write("a");
 		assertEquals("ba", paper.content);
 	}
+	
+	@Test
+	void whenPencilHasNoTipDurabilityItWritesBlankSpaceInsteadOfTextTest() {
+		pencil.tipDurability = 0;
+		pencil.write("a");
+		assertEquals(" ", paper.content);
+	}
 }

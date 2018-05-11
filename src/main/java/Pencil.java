@@ -6,4 +6,8 @@ public class Pencil {
 	public Pencil (Paper argPaper) {
 		this.paper = argPaper;
 	}
+	
+	public void write(String toWrite) {
+		paper.content = toWrite;
+	}
 }

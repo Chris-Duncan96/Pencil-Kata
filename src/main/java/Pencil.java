@@ -8,6 +8,6 @@ public class Pencil {
 	}
 	
 	public void write(String toWrite) {
-		paper.content = toWrite;
+		paper.content += toWrite;
 	}
 }

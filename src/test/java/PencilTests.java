@@ -39,8 +39,8 @@ class PencilTests {
 	@Test
 	void whenGivenStringPencilAppendsItToPaperTest() {
 		Paper paper = new Paper();
-		paper.content = "b";
 		Pencil pencil = new Pencil(paper);
+		paper.content = "b";
 		pencil.write("a");
 		assertEquals("ba", paper.content);
 	}

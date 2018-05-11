@@ -16,7 +16,7 @@ class PencilTests {
 	@BeforeEach
 	void InitializePaperAndPencil() {
 		paper = new Paper();
-		pencil = new Pencil(paper);
+		pencil = new Pencil(paper, Integer.MAX_VALUE);
 	}
 	
 	@Test

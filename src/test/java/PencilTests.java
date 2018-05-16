@@ -20,7 +20,7 @@ class PencilTests {
 	}
 	
 	@Test
-	void whenPencilHas1DurabilityItCanWriteSingleCharThenRunsOutOfDurability() {
+	void aPencilWith1DurabilityCanWriteSingleCharThenHas0DurabilityTest() {
 		pencil.tipDurability = 1;
 		pencil.write("a");
 		assertEquals(0, pencil.tipDurability);

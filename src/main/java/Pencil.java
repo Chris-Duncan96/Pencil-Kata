@@ -13,6 +13,7 @@ public class Pencil {
 		this.tipDurability = argTipDurability;
 		this.defaultTipDurability = argTipDurability;
 		this.length = argLength;
+		this.eraserDurability = argEraserDurability;
 	}
 	
 	public void write(String thoughtsToWrite){
@@ -49,7 +50,13 @@ public class Pencil {
 	public void erase(String substring) {
 		int locationOfSubstring = paper.content.lastIndexOf(substring);
 		if(locationOfSubstring > -1) {
-			for(int offset = substring.length(); offset > 0 ; offset--) {
+			eraseCharactersFromPaper(substring.length(), locationOfSubstring);
+		}
+	}
+	
+	private void eraseCharactersFromPaper(int substringLength, int locationOfSubstring) {
+		for(int offset = substringLength - 1; offset >= 0 ; offset--) {
+			if(this.eraserDurability > 0) {
 				eraseCharacterAtLocation(locationOfSubstring + offset);
 			}
 		}
@@ -57,7 +64,14 @@ public class Pencil {
 	
 	private void eraseCharacterAtLocation(int location) {
 		char[] characters = paper.content.toCharArray();
-		characters[location - 1] = ' ';
+		reduceEraserDurabilityBy(characters[location]);
+		characters[location] = ' ';
 		paper.content = new String(characters);
+	}
+	
+	private void reduceEraserDurabilityBy(char erasedChar) {
+		if(!Character.isWhitespace(erasedChar)) {
+			this.eraserDurability--;
+		}
 	}
 }

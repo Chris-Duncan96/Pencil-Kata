@@ -43,4 +43,19 @@ public class Pencil {
 			this.length--;
 		}
 	}
+	
+	public void erase(String substring) {
+		int locationOfSubstring = paper.content.lastIndexOf(substring);
+		if(locationOfSubstring > -1) {
+			for(int offset = substring.length(); offset > 0 ; offset--) {
+				eraseCharacterAtLocation(locationOfSubstring + offset);
+			}
+		}
+	}
+	
+	private void eraseCharacterAtLocation(int location) {
+		char[] characters = paper.content.toCharArray();
+		characters[location - 1] = ' ';
+		paper.content = new String(characters);
+	}
 }

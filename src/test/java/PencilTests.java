@@ -20,21 +20,28 @@ class PencilTests {
 	}
 	
 	@Test
-	void erasingLongStringOnPageLeavesEquallyLongWhiteSpaceOnPaperTest() {
+	void erasingStringOnPageLeavesEquallyLongWhiteSpaceOnPaperTest() {
+		paper.content = "aabc";
+		pencil.erase("abc");
+		assertEquals("a   ", paper.content);
+	}
+	
+	@Test
+	void erasingEntireStringOnPageLeavesEquallyLongWhiteSpaceOnPaperTest() {
 		paper.content = "abc";
 		pencil.erase("abc");
 		assertEquals("   ", paper.content);
 	}
 	
 	@Test
-	void erasingLongStringOnPaperReplacesLastInstanceOfStringWithEquallyLongWhitespaceTest() {
+	void erasingStringOnPaperReplacesOnlyLastInstanceOfStringWithEquallyLongWhitespaceTest() {
 		paper.content = "abc abc";
 		pencil.erase("abc");
 		assertEquals("abc    ", paper.content);
 	}
 	
 	@Test
-	void erasingCharacterFromPaperReplacesLastInstanceOfThatCharacterWithWhitespaceTest() {
+	void erasingCharacterFromPaperReplacesOnlyLastInstanceOfThatCharacterWithWhitespaceTest() {
 		paper.content = "aa";
 		pencil.erase("a");
 		assertEquals("a ", paper.content);

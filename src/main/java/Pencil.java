@@ -74,4 +74,27 @@ public class Pencil {
 			this.eraserDurability--;
 		}
 	}
+	
+	public void insert(String string, int startLocation) {
+		for(int counter = 0; counter < string.length(); counter++){
+			writeCharAtLocation(string.charAt(counter), startLocation + counter);
+		}
+	}
+
+	private void writeCharAtLocation(char inputChar, int location) {
+		if(this.tipDurability <= 0) {
+			return;
+		}
+		reducePencilDurabilityBy(inputChar);
+		Character replacementChar;
+		if(Character.isWhitespace(paper.content.charAt(location)) || paper.content.charAt(location) == inputChar) {
+			replacementChar = inputChar;
+		}
+		else {
+			replacementChar = '@';
+		}
+		char[] characters = paper.content.toCharArray();
+		characters[location] = replacementChar;
+		paper.content = new String(characters);
+	}
 }

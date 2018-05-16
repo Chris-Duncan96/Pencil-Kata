@@ -9,12 +9,18 @@ public class Pencil {
 		this.tipDurability = argTipDurability;
 	}
 	
-	public void write(String toWrite) {
-		if(tipDurability > 0) {
-			paper.content += toWrite;
+	public void write(String thoughtsToWrite){
+		for (char nextCharacter: thoughtsToWrite.toCharArray()) {
+			appendCharToPaper(nextCharacter);
 		}
-		else {
-			paper.content += " ";
-		}
+	}
+	
+	private void appendCharToPaper(char thisCharacter){
+		if(this.tipDurability <= 0) {
+			paper.content += ' ';
+		} else {
+			tipDurability -= 1;
+			paper.content += thisCharacter;
+		}	
 	}
 }

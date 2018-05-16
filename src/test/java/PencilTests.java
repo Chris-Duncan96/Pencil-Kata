@@ -18,6 +18,28 @@ class PencilTests {
 		paper = new Paper();
 		pencil = new Pencil(paper, Integer.MAX_VALUE);
 	}
+
+	@Test
+	void sharpeningPencilRestoresTipDurabilityToOriginalValue() {
+		pencil.tipDurability = 0;
+		pencil.sharpen();
+		assertEquals(Integer.MAX_VALUE, pencil.tipDurability);
+	}
+	
+	@Test
+	void sharpeningPencilReducesPencilLengthBy1() {
+		pencil.length = 1;
+		pencil.sharpen();
+		assertEquals(0, pencil.length);
+	}
+	
+	@Test
+	void sharpeningPencilWith0LengthDoesNotChangeDurability() {
+		pencil.tipDurability = 5;
+		pencil.length = 0;
+		pencil.sharpen();
+		assertEquals(5, pencil.tipDurability);
+	}
 	
 	@Test
 	void with0DurabilityAttemptingToWriteDoesNotReduceDurabilityFurtherTest() {

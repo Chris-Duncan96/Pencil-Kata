@@ -20,6 +20,22 @@ class PencilTests {
 		paper = new Paper();
 		pencil = new Pencil(paper, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
 	}
+
+	@Test
+	void eraserDepleatesThrouhoutEraseCallAndStopsIfInsufficientDurabilityTest() {
+		pencil.eraserDurability = 2;
+		paper.content = "abc";
+		pencil.erase("abc");
+		assertEquals("a  ", paper.content);
+	}
+	
+	@Test
+	void eraserWith0DurabilityCannotEraseTest() {
+		pencil.eraserDurability = 0;
+		paper.content = "a";
+		pencil.erase("a");
+		assertEquals("a", paper.content);
+	}
 	
 	@Test
 	void erasingStringOnPageLeavesEquallyLongWhiteSpaceOnPaperTest() {

@@ -13,10 +13,12 @@ class PencilTests {
 	Paper paper;
 	Pencil pencil;
 	
+	static int BASE = 100;
+	
 	@BeforeEach
 	void InitializePaperAndPencil() {
 		paper = new Paper();
-		pencil = new Pencil(paper, Integer.MAX_VALUE, Integer.MAX_VALUE);
+		pencil = new Pencil(paper, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
 	}
 	
 	@Test
@@ -24,6 +26,22 @@ class PencilTests {
 		paper.content = "aabc";
 		pencil.erase("abc");
 		assertEquals("a   ", paper.content);
+	}
+	
+	@Test
+	void erasingCharacterReducesEraserDurabilityBy1Test() {
+		pencil.eraserDurability = BASE;
+		paper.content = "a";
+		pencil.erase("a");
+		assertEquals(BASE - 1, pencil.eraserDurability);
+	}
+	
+	@Test
+	void erasingWhiteSpaceDoesNotReduceEraserDurabilityTest() {
+		pencil.eraserDurability = BASE;
+		paper.content = " ";
+		pencil.erase(" ");
+		assertEquals(BASE, pencil.eraserDurability);
 	}
 	
 	@Test
@@ -77,10 +95,10 @@ class PencilTests {
 	
 	@Test
 	void sharpeningPencilWith0LengthDoesNotChangeDurability() {
-		pencil.tipDurability = 5;
+		pencil.tipDurability = BASE;
 		pencil.length = 0;
 		pencil.sharpen();
-		assertEquals(5, pencil.tipDurability);
+		assertEquals(BASE, pencil.tipDurability);
 	}
 	
 	@Test
@@ -92,30 +110,30 @@ class PencilTests {
 	
 	@Test
 	void writing1UppcaseAnd1LowerCaseAnd1BlankSpaceCharReducesTipDurabilityBy3Test() {
-		pencil.tipDurability = 5;
+		pencil.tipDurability = BASE;
 		pencil.write("Ab ");
-		assertEquals(2, pencil.tipDurability);
+		assertEquals(BASE - 3, pencil.tipDurability);
 	}
 	
 	@Test
 	void writingUppercaseCharReducesTipDurabilityBy2Test() {
-		pencil.tipDurability = 3;
+		pencil.tipDurability = BASE;
 		pencil.write("A");
-		assertEquals(1, pencil.tipDurability);
+		assertEquals(BASE - 2, pencil.tipDurability);
 	}
 	
 	@Test
 	void writingLowercaseCharReducesTipDurabilityBy1Test() {
-		pencil.tipDurability = 3;
+		pencil.tipDurability = BASE;
 		pencil.write("a");
-		assertEquals(2, pencil.tipDurability);
+		assertEquals(BASE - 1, pencil.tipDurability);
 	}
 	
 	@Test
 	void writingWhiteSpaceCharReducesTipDurabilityBy0Test() {
-		pencil.tipDurability = 3;
+		pencil.tipDurability = BASE;
 		pencil.write(" ");
-		assertEquals(3, pencil.tipDurability);
+		assertEquals(BASE, pencil.tipDurability);
 	}
 	
 	@Test

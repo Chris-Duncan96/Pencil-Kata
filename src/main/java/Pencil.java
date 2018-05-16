@@ -2,11 +2,13 @@ package main.java;
 
 public class Pencil {
 
-	Paper paper;
+	public Paper paper;
 	public int tipDurability;
 	public int defaultTipDurability;
 	public int length;
-	public Pencil (Paper argPaper, int argTipDurability, int argLength) {
+	public int eraserDurability;
+	
+	public Pencil (Paper argPaper, int argTipDurability, int argLength, int argEraserDurability) {
 		this.paper = argPaper;
 		this.tipDurability = argTipDurability;
 		this.defaultTipDurability = argTipDurability;

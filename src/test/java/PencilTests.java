@@ -16,7 +16,7 @@ class PencilTests {
 	@BeforeEach
 	void InitializePaperAndPencil() {
 		paper = new Paper();
-		pencil = new Pencil(paper, Integer.MAX_VALUE);
+		pencil = new Pencil(paper, Integer.MAX_VALUE, Integer.MAX_VALUE);
 	}
 
 	@Test
@@ -27,7 +27,7 @@ class PencilTests {
 	}
 	
 	@Test
-	void sharpeningPencilReducesPencilLengthBy1() {
+	void sharpeningPencilWithLength1ReducesPencilLengthTo0() {
 		pencil.length = 1;
 		pencil.sharpen();
 		assertEquals(0, pencil.length);

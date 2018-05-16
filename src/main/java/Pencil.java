@@ -4,9 +4,13 @@ public class Pencil {
 
 	Paper paper;
 	public int tipDurability;
-	public Pencil (Paper argPaper, int argTipDurability) {
+	public int defaultTipDurability;
+	public int length;
+	public Pencil (Paper argPaper, int argTipDurability, int argLength) {
 		this.paper = argPaper;
 		this.tipDurability = argTipDurability;
+		this.defaultTipDurability = argTipDurability;
+		this.length = argLength;
 	}
 	
 	public void write(String thoughtsToWrite){
@@ -30,6 +34,13 @@ public class Pencil {
 		}
 		else if(Character.isLowerCase(letterThatWasWritten)) {
 			this.tipDurability -= 1;
+		}
+	}
+	
+	public void sharpen() {
+		if(length > 0) {
+			this.tipDurability = this.defaultTipDurability;
+			this.length--;
 		}
 	}
 }

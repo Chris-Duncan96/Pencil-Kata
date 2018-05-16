@@ -18,13 +18,48 @@ class PencilTests {
 		paper = new Paper();
 		pencil = new Pencil(paper, Integer.MAX_VALUE, Integer.MAX_VALUE);
 	}
-
+	
+	@Test
+	void erasingLongStringOnPageLeavesEquallyLongWhiteSpaceOnPaperTest() {
+		paper.content = "abc";
+		pencil.erase("abc");
+		assertEquals("   ", paper.content);
+	}
+	
+	@Test
+	void erasingLongStringOnPaperReplacesLastInstanceOfStringWithEquallyLongWhitespaceTest() {
+		paper.content = "abc abc";
+		pencil.erase("abc");
+		assertEquals("abc    ", paper.content);
+	}
+	
+	@Test
+	void erasingCharacterFromPaperReplacesLastInstanceOfThatCharacterWithWhitespaceTest() {
+		paper.content = "aa";
+		pencil.erase("a");
+		assertEquals("a ", paper.content);
+	}
+	
+	@Test
+	void erasingLoneCharacterOnPageLeavesSingleWhiteSpaceOnPaperTest() {
+		paper.content = "a";
+		pencil.erase("a");
+		assertEquals(" ", paper.content);
+	}
+	
 	@Test
 	void sharpeningPencilRestoresTipDurabilityToOriginalValue() {
 		pencil.tipDurability = 0;
 		pencil.sharpen();
 		assertEquals(Integer.MAX_VALUE, pencil.tipDurability);
 	}
+	
+	@Test
+	void sharpeningPencilWithLength2ReducesPencilLengthTo1() {
+		pencil.length = 2;
+		pencil.sharpen();
+		assertEquals(1, pencil.length);
+	}	
 	
 	@Test
 	void sharpeningPencilWithLength1ReducesPencilLengthTo0() {

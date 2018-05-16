@@ -20,21 +20,35 @@ class PencilTests {
 	}
 	
 	@Test
-	void writingUppercaseCharReducesTipDurabilityBy2() {
+	void with0DurabilityAttemptingToWriteDoesNotReduceDurabilityFurtherTest() {
+		pencil.tipDurability = 0;
+		pencil.write("Ab ");
+		assertEquals(0, pencil.tipDurability);
+	}
+	
+	@Test
+	void writing1UppcaseAnd1LowerCaseAnd1BlankSpaceCharReducesTipDurabilityBy3Test() {
+		pencil.tipDurability = 5;
+		pencil.write("Ab ");
+		assertEquals(2, pencil.tipDurability);
+	}
+	
+	@Test
+	void writingUppercaseCharReducesTipDurabilityBy2Test() {
 		pencil.tipDurability = 3;
 		pencil.write("A");
 		assertEquals(1, pencil.tipDurability);
 	}
 	
 	@Test
-	void writingLowercaseCharReducesTipDurabilityBy1() {
+	void writingLowercaseCharReducesTipDurabilityBy1Test() {
 		pencil.tipDurability = 3;
 		pencil.write("a");
 		assertEquals(2, pencil.tipDurability);
 	}
 	
 	@Test
-	void writingWhiteSpaceCharReducesTipDurabilityBy0() {
+	void writingWhiteSpaceCharReducesTipDurabilityBy0Test() {
 		pencil.tipDurability = 3;
 		pencil.write(" ");
 		assertEquals(3, pencil.tipDurability);
@@ -63,6 +77,13 @@ class PencilTests {
 	@Test
 	void whenPencilHasNoTipDurabilityItWritesBlankSpaceInsteadOfTextTest() {
 		pencil.tipDurability = 0;
+		pencil.write("a");
+		assertEquals(" ", paper.content);
+	}
+	
+	@Test
+	void whenPencilHasNegative1TipDurabilityItWritesBlankSpaceInsteadOfTextTest() {
+		pencil.tipDurability = -1;
 		pencil.write("a");
 		assertEquals(" ", paper.content);
 	}

@@ -20,10 +20,31 @@ class PencilTests {
 	}
 	
 	@Test
-	void aPencilWith1DurabilityCanWriteSingleCharThenHas0DurabilityTest() {
+	void writingUppercaseCharReducesTipDurabilityBy2() {
+		pencil.tipDurability = 3;
+		pencil.write("A");
+		assertEquals(1, pencil.tipDurability);
+	}
+	
+	@Test
+	void writingLowercaseCharReducesTipDurabilityBy1() {
+		pencil.tipDurability = 3;
+		pencil.write("a");
+		assertEquals(2, pencil.tipDurability);
+	}
+	
+	@Test
+	void writingWhiteSpaceCharReducesTipDurabilityBy0() {
+		pencil.tipDurability = 3;
+		pencil.write(" ");
+		assertEquals(3, pencil.tipDurability);
+	}
+	
+	@Test
+	void aPencilWith1DurabilityCanWriteSingleCharThenHasLessThan1DurabilityTest() {
 		pencil.tipDurability = 1;
 		pencil.write("a");
-		assertEquals(0, pencil.tipDurability);
+		assertTrue(1 > pencil.tipDurability);
 	}
 	
 	@Test

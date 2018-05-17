@@ -53,11 +53,11 @@ public class EraserTests {
 	}
 	
 	@Test
-	public void erasingWhiteSpaceDoesNotReduceEraserDurabilityTest() {
+	public void erasingWhiteSpaceReducesEraserDurabilityBy1Test() {
 		pencil.eraserDurability = BASE;
 		paper.content = " ";
 		pencil.erase(" ");
-		assertEquals(BASE, pencil.eraserDurability);
+		assertEquals(BASE - 1, pencil.eraserDurability);
 	}
 	
 	@Test

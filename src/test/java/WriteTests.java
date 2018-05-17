@@ -20,7 +20,7 @@ public class WriteTests {
 	}
 	
 	@Test
-	public void whenGivenStringPencilWritesItToPaperTest() {
+	public void whenGivenStringPencilWritesItToBlankPaperTest() {
 		pencil.write("a");
 		assertEquals("a", paper.content);
 	}

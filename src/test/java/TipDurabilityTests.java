@@ -58,7 +58,7 @@ public class TipDurabilityTests {
 	}
 	
 	@Test
-	public void aPencilWith1DurabilityCanWriteSingleCharThenHasLessThan1DurabilityTest() {
+	public void aPencilWith1DurabilityCanWriteSingleCharThenReducesDurabilityTest() {
 		pencil.tipDurability = 1;
 		pencil.write("a");
 		assertTrue(1 > pencil.tipDurability);

@@ -22,17 +22,17 @@ public class EditTests {
 	}
 	
 	@Test
-	public void insertingThreeCharactersOverSomeDifferentCharacterResultsInPartialCollisionTest() {
-		paper.content = "abc";
-		pencil.insert("xbx", 0);
-		assertEquals("@b@", paper.content);
-	}
-	
-	@Test
 	public void insertingThreeCharactersOverDifferentCharacterResultsInCollisionTest() {
 		paper.content = "abc";
 		pencil.insert("bcd", 0);
 		assertEquals("@@@", paper.content);
+	}
+	
+	@Test
+	public void insertingThreeCharacterOverPartialWhiteSpaceResultsInPartialCollisionTest() {
+		paper.content = "a c";
+		pencil.insert("xxx", 0);
+		assertEquals("@x@", paper.content);
 	}
 	
 	@Test
@@ -43,10 +43,10 @@ public class EditTests {
 	}
 	
 	@Test
-	public void insertingCharacterOverSameCharacterDoesNotResultaInCollisionTest() {
+	public void insertingCharacterOverSameCharacterResultsInCollisionTest() {
 		paper.content = "a";
 		pencil.insert("a", 0);
-		assertEquals("a", paper.content);
+		assertEquals("@", paper.content);
 	}
 	
 	@Test

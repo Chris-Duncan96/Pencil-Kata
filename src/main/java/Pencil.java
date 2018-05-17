@@ -63,38 +63,34 @@ public class Pencil {
 	}
 	
 	private void eraseCharacterAtLocation(int location) {
-		char[] characters = paper.content.toCharArray();
-		reduceEraserDurabilityBy(characters[location]);
-		characters[location] = ' ';
-		paper.content = new String(characters);
-	}
-	
-	private void reduceEraserDurabilityBy(char erasedChar) {
-		if(!Character.isWhitespace(erasedChar)) {
-			this.eraserDurability--;
-		}
+		this.eraserDurability--;
+		setCharAtLocation(' ', location);
 	}
 	
 	public void insert(String string, int startLocation) {
 		for(int counter = 0; counter < string.length(); counter++){
-			writeCharAtLocation(string.charAt(counter), startLocation + counter);
+			insertCharacterAtLocation(string.charAt(counter), startLocation + counter);
 		}
 	}
-
-	private void writeCharAtLocation(char inputChar, int location) {
-		if(this.tipDurability <= 0) {
-			return;
-		}
-		reducePencilDurabilityBy(inputChar);
-		Character replacementChar;
-		if(Character.isWhitespace(paper.content.charAt(location)) || paper.content.charAt(location) == inputChar) {
-			replacementChar = inputChar;
+	
+	private void insertCharacterAtLocation(char character, int location) {
+		reducePencilDurabilityBy(character);
+		if(locationIsWhitespace(location)) {
+			setCharAtLocation(character, location);
 		}
 		else {
-			replacementChar = '@';
+			setCharAtLocation('@', location);
 		}
+	}
+	
+	private boolean locationIsWhitespace(int location) {
 		char[] characters = paper.content.toCharArray();
-		characters[location] = replacementChar;
+		return Character.isWhitespace(characters[location]);
+	}
+
+	private void setCharAtLocation(char inputChar, int location) {
+		char[] characters = paper.content.toCharArray();
+		characters[location] = inputChar;
 		paper.content = new String(characters);
 	}
 }

@@ -22,7 +22,7 @@ public class EraserTests {
 	}
 	
 	@Test
-	public void eraserDepleatesThrouhoutEraseCallAndStopsIfInsufficientDurabilityTest() {
+	public void with2DurabilityPencilCanEraseOnly2CharactersTest() {
 		pencil.eraserDurability = 2;
 		paper.content = "abc";
 		pencil.erase("abc");
@@ -38,7 +38,7 @@ public class EraserTests {
 	}
 	
 	@Test
-	public void erasingStringOnPageLeavesEquallyLongWhiteSpaceOnPaperTest() {
+	public void erasing3CharactersLeaves3WhiteSpacesTest() {
 		paper.content = "aabc";
 		pencil.erase("abc");
 		assertEquals("a   ", paper.content);
@@ -86,5 +86,26 @@ public class EraserTests {
 		paper.content = "a";
 		pencil.erase("a");
 		assertEquals(" ", paper.content);
+	}
+	
+	@Test
+	public void erasingFirstCharacterDoesNotShiftOtherCharactersTest() {
+		paper.content = "abc";
+		pencil.erase("a");
+		assertEquals(" bc", paper.content);
+	}
+	
+	@Test
+	public void erasingMiddleCharacterDoesNotShiftOtherCharactersTest() {
+		paper.content = "abc";
+		pencil.erase("b");
+		assertEquals("a c", paper.content);
+	}
+	
+	@Test
+	public void erasingLastCharacterDoesNotShiftOtherCharactersTest() {
+		paper.content = "abc";
+		pencil.erase("c");
+		assertEquals("ab ", paper.content);
 	}
 }

@@ -69,11 +69,11 @@ public class Pencil {
 	
 	public void insert(String string, int startLocation) {
 		for(int counter = 0; counter < string.length(); counter++){
-			insertCharacterAtLocation(string.charAt(counter), startLocation + counter);
+			writeCharacterAtLocation(string.charAt(counter), startLocation + counter);
 		}
 	}
 	
-	private void insertCharacterAtLocation(char character, int location) {
+	private void writeCharacterAtLocation(char character, int location) {
 		reducePencilDurabilityBy(character);
 		if(locationIsWhitespace(location)) {
 			setCharAtLocation(character, location);

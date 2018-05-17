@@ -1,70 +1,71 @@
 package test.java;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+import org.junit.Before;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import main.java.Paper;
 import main.java.Pencil;
 
-class PencilTests {
+public class PencilTests {
 	
 	Paper paper;
 	Pencil pencil;
 	
 	static int BASE = 100;
 	
-	@BeforeEach
-	void InitializePaperAndPencil() {
+	@Before
+	public void InitializePaperAndPencil() {
 		paper = new Paper();
 		pencil = new Pencil(paper, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
 	}
 	
 	@Test
-	void insertingThreeCharactersOverSomeDifferentCharacterResultsInPartialCollisionTest() {
+	public void insertingThreeCharactersOverSomeDifferentCharacterResultsInPartialCollisionTest() {
 		paper.content = "abc";
 		pencil.insert("xbx", 0);
 		assertEquals("@b@", paper.content);
 	}
 	
 	@Test
-	void insertingThreeCharactersOverDifferentCharacterResultsInCollisionTest() {
+	public void insertingThreeCharactersOverDifferentCharacterResultsInCollisionTest() {
 		paper.content = "abc";
 		pencil.insert("bcd", 0);
 		assertEquals("@@@", paper.content);
 	}
 	
 	@Test
-	void insertingCharacterOverDifferentCharacterResultsInCollisionTest() {
+	public void insertingCharacterOverDifferentCharacterResultsInCollisionTest() {
 		paper.content = "a";
 		pencil.insert("b", 0);
 		assertEquals("@", paper.content);
 	}
 	
 	@Test
-	void insertingCharacterOverSameCharacterDoesNotResultaInCollisionTest() {
+	public void insertingCharacterOverSameCharacterDoesNotResultaInCollisionTest() {
 		paper.content = "a";
 		pencil.insert("a", 0);
 		assertEquals("a", paper.content);
 	}
 	
 	@Test
-	void insertingCharacterDoesNotShiftTextTest() {
+	public void insertingCharacterDoesNotShiftTextTest() {
 		paper.content = " b";
 		pencil.insert("a", 0);
 		assertEquals("ab", paper.content);
 	}
 	
 	@Test
-	void insertingCharacterOverWhitespaceResultsInOverwrittenWhitespaceTest() {
+	public void insertingCharacterOverWhitespaceResultsInOverwrittenWhitespaceTest() {
 		paper.content = "a c";
 		pencil.insert("b", 1);
 		assertEquals("abc", paper.content);
 	}
 
 	@Test
-	void eraserDepleatesThrouhoutEraseCallAndStopsIfInsufficientDurabilityTest() {
+	public void eraserDepleatesThrouhoutEraseCallAndStopsIfInsufficientDurabilityTest() {
 		pencil.eraserDurability = 2;
 		paper.content = "abc";
 		pencil.erase("abc");
@@ -72,7 +73,7 @@ class PencilTests {
 	}
 	
 	@Test
-	void eraserWith0DurabilityCannotEraseTest() {
+	public void eraserWith0DurabilityCannotEraseTest() {
 		pencil.eraserDurability = 0;
 		paper.content = "a";
 		pencil.erase("a");
@@ -80,14 +81,14 @@ class PencilTests {
 	}
 	
 	@Test
-	void erasingStringOnPageLeavesEquallyLongWhiteSpaceOnPaperTest() {
+	public void erasingStringOnPageLeavesEquallyLongWhiteSpaceOnPaperTest() {
 		paper.content = "aabc";
 		pencil.erase("abc");
 		assertEquals("a   ", paper.content);
 	}
 	
 	@Test
-	void erasingCharacterReducesEraserDurabilityBy1Test() {
+	public void erasingCharacterReducesEraserDurabilityBy1Test() {
 		pencil.eraserDurability = BASE;
 		paper.content = "a";
 		pencil.erase("a");
@@ -95,7 +96,7 @@ class PencilTests {
 	}
 	
 	@Test
-	void erasingWhiteSpaceDoesNotReduceEraserDurabilityTest() {
+	public void erasingWhiteSpaceDoesNotReduceEraserDurabilityTest() {
 		pencil.eraserDurability = BASE;
 		paper.content = " ";
 		pencil.erase(" ");
@@ -103,56 +104,56 @@ class PencilTests {
 	}
 	
 	@Test
-	void erasingEntireStringOnPageLeavesEquallyLongWhiteSpaceOnPaperTest() {
+	public void erasingEntireStringOnPageLeavesEquallyLongWhiteSpaceOnPaperTest() {
 		paper.content = "abc";
 		pencil.erase("abc");
 		assertEquals("   ", paper.content);
 	}
 	
 	@Test
-	void erasingStringOnPaperReplacesOnlyLastInstanceOfStringWithEquallyLongWhitespaceTest() {
+	public void erasingStringOnPaperReplacesOnlyLastInstanceOfStringWithEquallyLongWhitespaceTest() {
 		paper.content = "abc abc";
 		pencil.erase("abc");
 		assertEquals("abc    ", paper.content);
 	}
 	
 	@Test
-	void erasingCharacterFromPaperReplacesOnlyLastInstanceOfThatCharacterWithWhitespaceTest() {
+	public void erasingCharacterFromPaperReplacesOnlyLastInstanceOfThatCharacterWithWhitespaceTest() {
 		paper.content = "aa";
 		pencil.erase("a");
 		assertEquals("a ", paper.content);
 	}
 	
 	@Test
-	void erasingLoneCharacterOnPageLeavesSingleWhiteSpaceOnPaperTest() {
+	public void erasingLoneCharacterOnPageLeavesSingleWhiteSpaceOnPaperTest() {
 		paper.content = "a";
 		pencil.erase("a");
 		assertEquals(" ", paper.content);
 	}
 	
 	@Test
-	void sharpeningPencilRestoresTipDurabilityToOriginalValue() {
+	public void sharpeningPencilRestoresTipDurabilityToOriginalValue() {
 		pencil.tipDurability = 0;
 		pencil.sharpen();
 		assertEquals(Integer.MAX_VALUE, pencil.tipDurability);
 	}
 	
 	@Test
-	void sharpeningPencilWithLength2ReducesPencilLengthTo1() {
+	public void sharpeningPencilWithLength2ReducesPencilLengthTo1() {
 		pencil.length = 2;
 		pencil.sharpen();
 		assertEquals(1, pencil.length);
 	}	
 	
 	@Test
-	void sharpeningPencilWithLength1ReducesPencilLengthTo0() {
+	public void sharpeningPencilWithLength1ReducesPencilLengthTo0() {
 		pencil.length = 1;
 		pencil.sharpen();
 		assertEquals(0, pencil.length);
 	}
 	
 	@Test
-	void sharpeningPencilWith0LengthDoesNotChangeDurability() {
+	public void sharpeningPencilWith0LengthDoesNotChangeDurability() {
 		pencil.tipDurability = BASE;
 		pencil.length = 0;
 		pencil.sharpen();
@@ -160,76 +161,76 @@ class PencilTests {
 	}
 	
 	@Test
-	void with0DurabilityAttemptingToWriteDoesNotReduceDurabilityFurtherTest() {
+	public void with0DurabilityAttemptingToWriteDoesNotReduceDurabilityFurtherTest() {
 		pencil.tipDurability = 0;
 		pencil.write("Ab ");
 		assertEquals(0, pencil.tipDurability);
 	}
 	
 	@Test
-	void writing1UppcaseAnd1LowerCaseAnd1BlankSpaceCharReducesTipDurabilityBy3Test() {
+	public void writing1UppcaseAnd1LowerCaseAnd1BlankSpaceCharReducesTipDurabilityBy3Test() {
 		pencil.tipDurability = BASE;
 		pencil.write("Ab ");
 		assertEquals(BASE - 3, pencil.tipDurability);
 	}
 	
 	@Test
-	void writingUppercaseCharReducesTipDurabilityBy2Test() {
+	public void writingUppercaseCharReducesTipDurabilityBy2Test() {
 		pencil.tipDurability = BASE;
 		pencil.write("A");
 		assertEquals(BASE - 2, pencil.tipDurability);
 	}
 	
 	@Test
-	void writingLowercaseCharReducesTipDurabilityBy1Test() {
+	public void writingLowercaseCharReducesTipDurabilityBy1Test() {
 		pencil.tipDurability = BASE;
 		pencil.write("a");
 		assertEquals(BASE - 1, pencil.tipDurability);
 	}
 	
 	@Test
-	void writingWhiteSpaceCharReducesTipDurabilityBy0Test() {
+	public void writingWhiteSpaceCharReducesTipDurabilityBy0Test() {
 		pencil.tipDurability = BASE;
 		pencil.write(" ");
 		assertEquals(BASE, pencil.tipDurability);
 	}
 	
 	@Test
-	void aPencilWith1DurabilityCanWriteSingleCharThenHasLessThan1DurabilityTest() {
+	public void aPencilWith1DurabilityCanWriteSingleCharThenHasLessThan1DurabilityTest() {
 		pencil.tipDurability = 1;
 		pencil.write("a");
 		assertTrue(1 > pencil.tipDurability);
 	}
 	
 	@Test
-	void whenGivenStringPencilWritesItToPaperTest() {
+	public void whenGivenStringPencilWritesItToPaperTest() {
 		pencil.write("a");
 		assertEquals("a", paper.content);
 	}
 	
 	@Test
-	void whenGivenStringPencilAppendsItToPaperTest() {
+	public void whenGivenStringPencilAppendsItToPaperTest() {
 		paper.content = "b";
 		pencil.write("a");
 		assertEquals("ba", paper.content);
 	}
 	
 	@Test
-	void whenPencilHasNoTipDurabilityItWritesBlankSpaceInsteadOfTextTest() {
+	public void whenPencilHasNoTipDurabilityItWritesBlankSpaceInsteadOfTextTest() {
 		pencil.tipDurability = 0;
 		pencil.write("a");
 		assertEquals(" ", paper.content);
 	}
 	
 	@Test
-	void whenPencilHasNegative1TipDurabilityItWritesBlankSpaceInsteadOfTextTest() {
+	public void whenPencilHasNegative1TipDurabilityItWritesBlankSpaceInsteadOfTextTest() {
 		pencil.tipDurability = -1;
 		pencil.write("a");
 		assertEquals(" ", paper.content);
 	}
 	
 	@Test
-	void whenGivenStringTwoCharactersLongAnd0PointDurabilityPencilWritesTwoBlankSpacesTest() {
+	public void whenGivenStringTwoCharactersLongAnd0PointDurabilityPencilWritesTwoBlankSpacesTest() {
 		pencil.tipDurability = 0;
 		pencil.write("ab");
 		assertEquals("  ", paper.content);

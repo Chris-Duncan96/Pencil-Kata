@@ -13,8 +13,6 @@ public class EditTests {
 	Paper paper;
 	Pencil pencil;
 	
-	static int BASE = 100;
-	
 	@Before
 	public void InitializePaperAndPencil() {
 		paper = new Paper();

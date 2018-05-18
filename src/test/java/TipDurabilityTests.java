@@ -14,12 +14,12 @@ public class TipDurabilityTests {
 	Paper paper;
 	Pencil pencil;
 	
-	static int BASE = 100;
+	static int BASE_TIP_DURABILITY = 100;
 	
 	@Before
 	public void InitializePaperAndPencil() {
 		paper = new Paper();
-		pencil = new Pencil(paper, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
+		pencil = new Pencil(paper, BASE_TIP_DURABILITY, Integer.MAX_VALUE, Integer.MAX_VALUE);
 	}
 	
 	@Test
@@ -31,30 +31,26 @@ public class TipDurabilityTests {
 	
 	@Test
 	public void writing1UppcaseAnd1LowerCaseAnd1BlankSpaceCharReducesTipDurabilityBy3Test() {
-		pencil.tipDurability = BASE;
 		pencil.write("Ab ");
-		assertEquals(BASE - 3, pencil.tipDurability);
+		assertEquals(BASE_TIP_DURABILITY - 3, pencil.tipDurability);
 	}
 	
 	@Test
 	public void writingUppercaseCharReducesTipDurabilityBy2Test() {
-		pencil.tipDurability = BASE;
 		pencil.write("A");
-		assertEquals(BASE - 2, pencil.tipDurability);
+		assertEquals(BASE_TIP_DURABILITY - 2, pencil.tipDurability);
 	}
 	
 	@Test
 	public void writingLowercaseCharReducesTipDurabilityBy1Test() {
-		pencil.tipDurability = BASE;
 		pencil.write("a");
-		assertEquals(BASE - 1, pencil.tipDurability);
+		assertEquals(BASE_TIP_DURABILITY - 1, pencil.tipDurability);
 	}
 	
 	@Test
 	public void writingWhiteSpaceCharReducesTipDurabilityBy0Test() {
-		pencil.tipDurability = BASE;
 		pencil.write(" ");
-		assertEquals(BASE, pencil.tipDurability);
+		assertEquals(BASE_TIP_DURABILITY, pencil.tipDurability);
 	}
 	
 	@Test

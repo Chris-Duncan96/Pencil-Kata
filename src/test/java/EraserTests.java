@@ -13,12 +13,12 @@ public class EraserTests {
 	Paper paper;
 	Pencil pencil;
 	
-	static int BASE = 100;
+	static int BASE_ERASER_DURABILITY = 100;
 	
 	@Before
 	public void InitializePaperAndPencil() {
 		paper = new Paper();
-		pencil = new Pencil(paper, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
+		pencil = new Pencil(paper, Integer.MAX_VALUE, Integer.MAX_VALUE, BASE_ERASER_DURABILITY);
 	}
 	
 	@Test
@@ -46,18 +46,16 @@ public class EraserTests {
 	
 	@Test
 	public void erasingCharacterReducesEraserDurabilityBy1Test() {
-		pencil.eraserDurability = BASE;
 		paper.content = "a";
 		pencil.erase("a");
-		assertEquals(BASE - 1, pencil.eraserDurability);
+		assertEquals(BASE_ERASER_DURABILITY - 1, pencil.eraserDurability);
 	}
 	
 	@Test
 	public void erasingWhiteSpaceReducesEraserDurabilityBy1Test() {
-		pencil.eraserDurability = BASE;
 		paper.content = " ";
 		pencil.erase(" ");
-		assertEquals(BASE - 1, pencil.eraserDurability);
+		assertEquals(BASE_ERASER_DURABILITY - 1, pencil.eraserDurability);
 	}
 	
 	@Test

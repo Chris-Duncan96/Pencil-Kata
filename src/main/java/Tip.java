@@ -2,13 +2,13 @@ package main.java;
 
 public class Tip {
 
-	public Pencil pencil;
+	public Paper paper;
 	public int tipDurability;
 	public int defaultTipDurability;
 	public int length;
 	
-	public Tip(Pencil argPencil, int argLength, int argTipDurability) {
-		this.pencil = argPencil;
+	public Tip(Paper argPaper, int argLength, int argTipDurability) {
+		this.paper = argPaper;
 		this.tipDurability = argTipDurability;
 		this.defaultTipDurability = argTipDurability;
 		this.length = argLength;
@@ -22,10 +22,10 @@ public class Tip {
 	
 	private void appendCharToPaper(char characterToAppend){
 		if(this.tipDurability <= 0) {
-			pencil.paper.content += ' ';
+			paper.content += ' ';
 		} else {
 			reducePencilDurabilityBy(characterToAppend);
-			pencil.paper.content += characterToAppend;
+			paper.content += characterToAppend;
 		}	
 	}
 	
@@ -53,17 +53,12 @@ public class Tip {
 	
 	private void writeCharacterAtLocation(char character, int location) {
 		reducePencilDurabilityBy(character);
-		if(locationIsWhitespace(location)) {
-			pencil.setCharAtLocation(character, location);
+		if(paper.locationIsWhitespace(location)) {
+			paper.setCharAtLocation(character, location);
 		}
 		else {
-			pencil.setCharAtLocation('@', location);
+			paper.setCharAtLocation('@', location);
 		}
-	}
-	
-	private boolean locationIsWhitespace(int location) {
-		char[] characters = pencil.paper.content.toCharArray();
-		return Character.isWhitespace(characters[location]);
 	}
 
 }

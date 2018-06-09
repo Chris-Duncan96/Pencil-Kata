@@ -3,15 +3,15 @@ package main.java;
 public class Eraser {
 
 	public int durability;
-	private Pencil pencil;
+	private Paper paper;
 	
-	public Eraser(Pencil argPencil, int argEraserDurability){
+	public Eraser(Paper argPaper, int argEraserDurability){
 		this.durability = argEraserDurability;
-		this.pencil = argPencil;
+		this.paper = argPaper;
 	}
 	
 	public void erase(String substring) {
-		int locationOfSubstring = pencil.paper.content.lastIndexOf(substring);
+		int locationOfSubstring = paper.content.lastIndexOf(substring);
 		if(locationOfSubstring > -1) {
 			eraseCharactersFromPaper(substring.length(), locationOfSubstring);
 		}
@@ -27,7 +27,7 @@ public class Eraser {
 	
 	private void eraseCharacterAtLocation(int location) {
 		durability--;
-		pencil.setCharAtLocation(' ', location);
+		paper.setCharAtLocation(' ', location);
 	}
 	
 }

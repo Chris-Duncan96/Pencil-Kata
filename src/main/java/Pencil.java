@@ -4,11 +4,11 @@ public class Pencil {
 
 	public Paper paper;
 	public Eraser eraser;
-	public Tip tip;
+	public Writer writer;
 	
 	public Pencil (Paper argPaper, int argTipDurability, int argLength, int argEraserDurability) {
 		this.paper = argPaper;
-		this.tip = new Tip(argPaper, argLength, argTipDurability);
+		this.writer = new Writer(argPaper, argLength, argTipDurability);
 		this.eraser = new Eraser(argPaper, argEraserDurability);
 	}
 }

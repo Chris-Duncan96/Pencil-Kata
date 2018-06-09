@@ -1,13 +1,13 @@
 package main.java;
 
-public class Tip {
+public class Writer {
 
 	public Paper paper;
 	public int tipDurability;
 	public int defaultTipDurability;
 	public int length;
 	
-	public Tip(Paper argPaper, int argLength, int argTipDurability) {
+	public Writer(Paper argPaper, int argLength, int argTipDurability) {
 		this.paper = argPaper;
 		this.tipDurability = argTipDurability;
 		this.defaultTipDurability = argTipDurability;

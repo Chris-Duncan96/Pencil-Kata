@@ -21,14 +21,14 @@ public class WriteTests {
 	
 	@Test
 	public void whenGivenStringPencilWritesItToBlankPaperTest() {
-		pencil.tip.write("a");
+		pencil.writer.write("a");
 		assertEquals("a", paper.content);
 	}
 	
 	@Test
 	public void whenGivenStringPencilAppendsItToPaperTest() {
 		paper.content = "b";
-		pencil.tip.write("a");
+		pencil.writer.write("a");
 		assertEquals("ba", paper.content);
 	}
 }

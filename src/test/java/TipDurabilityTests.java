@@ -24,60 +24,60 @@ public class TipDurabilityTests {
 	
 	@Test
 	public void with0DurabilityAttemptingToWriteDoesNotReduceDurabilityFurtherTest() {
-		pencil.tip.tipDurability = 0;
-		pencil.tip.write("Ab ");
-		assertEquals(0, pencil.tip.tipDurability);
+		pencil.writer.tipDurability = 0;
+		pencil.writer.write("Ab ");
+		assertEquals(0, pencil.writer.tipDurability);
 	}
 	
 	@Test
 	public void writing1UppcaseAnd1LowerCaseAnd1BlankSpaceCharReducesTipDurabilityBy3Test() {
-		pencil.tip.write("Ab ");
-		assertEquals(BASE_TIP_DURABILITY - 3, pencil.tip.tipDurability);
+		pencil.writer.write("Ab ");
+		assertEquals(BASE_TIP_DURABILITY - 3, pencil.writer.tipDurability);
 	}
 	
 	@Test
 	public void writingUppercaseCharReducesTipDurabilityBy2Test() {
-		pencil.tip.write("A");
-		assertEquals(BASE_TIP_DURABILITY - 2, pencil.tip.tipDurability);
+		pencil.writer.write("A");
+		assertEquals(BASE_TIP_DURABILITY - 2, pencil.writer.tipDurability);
 	}
 	
 	@Test
 	public void writingLowercaseCharReducesTipDurabilityBy1Test() {
-		pencil.tip.write("a");
-		assertEquals(BASE_TIP_DURABILITY - 1, pencil.tip.tipDurability);
+		pencil.writer.write("a");
+		assertEquals(BASE_TIP_DURABILITY - 1, pencil.writer.tipDurability);
 	}
 	
 	@Test
 	public void writingWhiteSpaceCharReducesTipDurabilityBy0Test() {
-		pencil.tip.write(" ");
-		assertEquals(BASE_TIP_DURABILITY, pencil.tip.tipDurability);
+		pencil.writer.write(" ");
+		assertEquals(BASE_TIP_DURABILITY, pencil.writer.tipDurability);
 	}
 	
 	@Test
 	public void aPencilWith1DurabilityCanWriteSingleCharThenReducesDurabilityTest() {
-		pencil.tip.tipDurability = 1;
-		pencil.tip.write("a");
-		assertTrue(1 > pencil.tip.tipDurability);
+		pencil.writer.tipDurability = 1;
+		pencil.writer.write("a");
+		assertTrue(1 > pencil.writer.tipDurability);
 	}
 	
 	@Test
 	public void whenPencilHasNoTipDurabilityItWritesBlankSpaceInsteadOfTextTest() {
-		pencil.tip.tipDurability = 0;
-		pencil.tip.write("a");
+		pencil.writer.tipDurability = 0;
+		pencil.writer.write("a");
 		assertEquals(" ", paper.content);
 	}
 	
 	@Test
 	public void whenPencilHasNegative1TipDurabilityItWritesBlankSpaceInsteadOfTextTest() {
-		pencil.tip.tipDurability = -1;
-		pencil.tip.write("a");
+		pencil.writer.tipDurability = -1;
+		pencil.writer.write("a");
 		assertEquals(" ", paper.content);
 	}
 	
 	@Test
 	public void whenGivenStringTwoCharactersLongAnd0PointDurabilityPencilWritesTwoBlankSpacesTest() {
-		pencil.tip.tipDurability = 0;
-		pencil.tip.write("ab");
+		pencil.writer.tipDurability = 0;
+		pencil.writer.write("ab");
 		assertEquals("  ", paper.content);
 	}
 

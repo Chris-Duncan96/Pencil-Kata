@@ -23,87 +23,87 @@ public class EraserTests {
 	
 	@Test
 	public void with2DurabilityPencilCanEraseOnly2CharactersTest() {
-		pencil.eraserDurability = 2;
+		pencil.eraser.durability = 2;
 		paper.content = "abc";
-		pencil.erase("abc");
+		pencil.eraser.erase("abc");
 		assertEquals("a  ", paper.content);
 	}
 	
 	@Test
 	public void eraserWith0DurabilityCannotEraseTest() {
-		pencil.eraserDurability = 0;
+		pencil.eraser.durability = 0;
 		paper.content = "a";
-		pencil.erase("a");
+		pencil.eraser.erase("a");
 		assertEquals("a", paper.content);
 	}
 	
 	@Test
 	public void erasing3CharactersLeaves3WhiteSpacesTest() {
 		paper.content = "aabc";
-		pencil.erase("abc");
+		pencil.eraser.erase("abc");
 		assertEquals("a   ", paper.content);
 	}
 	
 	@Test
 	public void erasingCharacterReducesEraserDurabilityBy1Test() {
 		paper.content = "a";
-		pencil.erase("a");
-		assertEquals(BASE_ERASER_DURABILITY - 1, pencil.eraserDurability);
+		pencil.eraser.erase("a");
+		assertEquals(BASE_ERASER_DURABILITY - 1, pencil.eraser.durability);
 	}
 	
 	@Test
 	public void erasingWhiteSpaceReducesEraserDurabilityBy1Test() {
 		paper.content = " ";
-		pencil.erase(" ");
-		assertEquals(BASE_ERASER_DURABILITY - 1, pencil.eraserDurability);
+		pencil.eraser.erase(" ");
+		assertEquals(BASE_ERASER_DURABILITY - 1, pencil.eraser.durability);
 	}
 	
 	@Test
 	public void erasingEntireStringOnPageLeavesEquallyLongWhiteSpaceOnPaperTest() {
 		paper.content = "abc";
-		pencil.erase("abc");
+		pencil.eraser.erase("abc");
 		assertEquals("   ", paper.content);
 	}
 	
 	@Test
 	public void erasingStringOnPaperReplacesOnlyLastInstanceOfStringWithEquallyLongWhitespaceTest() {
 		paper.content = "abc abc";
-		pencil.erase("abc");
+		pencil.eraser.erase("abc");
 		assertEquals("abc    ", paper.content);
 	}
 	
 	@Test
 	public void erasingCharacterFromPaperReplacesOnlyLastInstanceOfThatCharacterWithWhitespaceTest() {
 		paper.content = "aa";
-		pencil.erase("a");
+		pencil.eraser.erase("a");
 		assertEquals("a ", paper.content);
 	}
 	
 	@Test
 	public void erasingLoneCharacterOnPageLeavesSingleWhiteSpaceOnPaperTest() {
 		paper.content = "a";
-		pencil.erase("a");
+		pencil.eraser.erase("a");
 		assertEquals(" ", paper.content);
 	}
 	
 	@Test
 	public void erasingFirstCharacterDoesNotShiftOtherCharactersTest() {
 		paper.content = "abc";
-		pencil.erase("a");
+		pencil.eraser.erase("a");
 		assertEquals(" bc", paper.content);
 	}
 	
 	@Test
 	public void erasingMiddleCharacterDoesNotShiftOtherCharactersTest() {
 		paper.content = "abc";
-		pencil.erase("b");
+		pencil.eraser.erase("b");
 		assertEquals("a c", paper.content);
 	}
 	
 	@Test
 	public void erasingLastCharacterDoesNotShiftOtherCharactersTest() {
 		paper.content = "abc";
-		pencil.erase("c");
+		pencil.eraser.erase("c");
 		assertEquals("ab ", paper.content);
 	}
 }

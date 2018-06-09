@@ -6,14 +6,14 @@ public class Pencil {
 	public int tipDurability;
 	public int defaultTipDurability;
 	public int length;
-	public int eraserDurability;
+	public Eraser eraser;
 	
 	public Pencil (Paper argPaper, int argTipDurability, int argLength, int argEraserDurability) {
 		this.paper = argPaper;
 		this.tipDurability = argTipDurability;
 		this.defaultTipDurability = argTipDurability;
 		this.length = argLength;
-		this.eraserDurability = argEraserDurability;
+		this.eraser = new Eraser(this, argEraserDurability);
 	}
 	
 	public void write(String thoughtsToWrite){
@@ -47,26 +47,6 @@ public class Pencil {
 		}
 	}
 	
-	public void erase(String substring) {
-		int locationOfSubstring = paper.content.lastIndexOf(substring);
-		if(locationOfSubstring > -1) {
-			eraseCharactersFromPaper(substring.length(), locationOfSubstring);
-		}
-	}
-	
-	private void eraseCharactersFromPaper(int substringLength, int locationOfSubstring) {
-		for(int offset = substringLength - 1; offset >= 0 ; offset--) {
-			if(this.eraserDurability > 0) {
-				eraseCharacterAtLocation(locationOfSubstring + offset);
-			}
-		}
-	}
-	
-	private void eraseCharacterAtLocation(int location) {
-		this.eraserDurability--;
-		setCharAtLocation(' ', location);
-	}
-	
 	public void insert(String string, int startLocation) {
 		for(int counter = 0; counter < string.length(); counter++){
 			writeCharacterAtLocation(string.charAt(counter), startLocation + counter);
@@ -88,7 +68,7 @@ public class Pencil {
 		return Character.isWhitespace(characters[location]);
 	}
 
-	private void setCharAtLocation(char inputChar, int location) {
+	void setCharAtLocation(char inputChar, int location) {
 		char[] characters = paper.content.toCharArray();
 		characters[location] = inputChar;
 		paper.content = new String(characters);
